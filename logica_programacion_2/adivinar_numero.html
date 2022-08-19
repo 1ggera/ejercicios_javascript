@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+
+<input />
+<button>Verificar si acertó con el número secreto</button>
+
+<script>
+  var numSecreto = Math.round(Math.random()*10);
+  var input = document.querySelector("Input");
+  input.focus(); //para indicar q el cursor comience acá
+
+  function verificar(){
+    if(parseInt(input.value)==numSecreto){
+      alert("Acertaste! el numero era: " + input.value)
+    }else{
+      alert("Has fallado")
+    }
+    
+    //para q luego de intentar adivinar el número limpie el input
+    input.value = "";
+    //para indicar q el cursor haga foco en esta etiqueta
+    input.focus();
+  }
+
+  //capturo lo q está en mi etiqueta html button
+  var button = document.querySelector("button");
+  //establezco q en el evento onclick llame a verificar
+  button.onclick = verificar;
+
+</script>
+
+<!-- El caso de que se quiera ingresar un numero y mostrarlo cuando se clikea un boton.
+Debo crear la funcion para mostrar y dentro debo enviar el valor del input
+
+<meta charset="UTF-8">
+<input/>
+<button>Mostrar texto escrito</button>
+
+<script>
+    var input = document.querySelector("input");
+
+    function mostrarTexto() {
+
+        alert(input.value);
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = mostrarTexto;
+</script> -->
+
+  
+<!--
+  El document tiene también otras funcionalidades. Es a través de document.querySelector que podemos ir hasta el mundo HTML y llevar el elemento al mundo JavaScript para que podamos manipularlo.
+
+  Pero ten cuidado, el correcto es querySelector con una S mayúscula. Si escribes con una s minúscula, cometerás un error de sintaxis.
+
+  Continuando... document.querySelector recibe un parámetro del nombre de las etiquetas que queremos buscar del mundo HTML. 
+  
+  Es más poderoso de lo que piensas y acepta recibir otros tipos de parámetros, pero para nuestra capacitación, entender que si pasamos el nombre de una etiqueta HTML nos devolverá la etiqueta en el mundo JavaScript es suficiente. 
+-->

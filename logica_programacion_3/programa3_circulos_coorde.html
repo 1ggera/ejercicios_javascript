@@ -1,0 +1,42 @@
+<canvas width="600" height="400"></canvas>
+<!--Programa interactivo donde averiguo donde usuario hace click. Practica de como obtener información de los eventos-->
+<script>
+  //variable pantalla está asociada al cuadro de 600x400
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "blue";
+  pincel.fillRect(0, 0, 600, 400);
+
+  function exibirAlerta(evento){
+    var x = evento.pageX - pantalla.offsetLeft; //le resto lo q sobra de margin left
+    var y = evento.pageY - pantalla.offsetTop; //le resto lo q sobra de margin top
+    console.log(evento);
+    alert(x +", "+ y);
+  }
+
+  //ahora asocio el evento click a una función que dibuja sobre el canvas
+  function dibujarCirculo(evento){
+    var x = evento.pageX - pantalla.offsetLeft; //le resto lo q sobra de margin left
+    var y = evento.pageY - pantalla.offsetTop; //le resto lo q sobra de margin top
+
+    pincel.fillStyle = "gold";//defino el color
+    pincel.beginPath();//habilito para dibujar
+    pincel.arc(x, y, 10, 0, 2*3.14);//defino la figura circular
+    pincel.fill();//relleno la figura
+
+    console.log(x +", "+ y);
+    //alert(x +", "+ y);
+  }
+
+  //Tengo q asociar mi función alerta al evento click
+  //pantalla.onclick = exibirAlerta; // -> cuando paso una función como parámetro no necesito agregar ()
+  /*Para saber donde exactamente ocurre el click inspecciono el parámetro q de la función exibirAlerta
+    function exibirAlerta(evento){
+      console.log(evento);
+      alert("Hiciste un click")
+    }
+  */
+
+  pantalla.onclick = dibujarCirculo;
+</script>

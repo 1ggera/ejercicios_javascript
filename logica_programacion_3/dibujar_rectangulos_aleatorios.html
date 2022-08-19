@@ -1,0 +1,28 @@
+<canvas width="600" height="400"> </canvas>
+<script>
+    function dibujarRectangulo(x,y,color,altura){
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+        pincel.fillStyle = color;
+        pincel.fillRect(x,y,50,altura); 
+        pincel.strokeStyle = "black";
+        pincel.strokeRect(x,y,50,altura);
+    }
+    dibujarRectangulo(50,50,"green",Math.round(Math.random()*50));
+
+    /*
+    FUNCIÓN OPTIMA
+
+    function dibujarRectangulos(x,y,base,altura,color){
+        var pantalla = document.querySelector("canvas");
+        var pincel = pantalla.getContext("2d");
+        //cuadradito
+        pincel.fillStyle = color;
+        pincel.fillRect(x,y,base,altura);
+        //borde
+        pincel.strokeStyle = "black";
+        pincel.strokeRect(x,y,base,altura);
+    }
+    
+    */
+</script> 

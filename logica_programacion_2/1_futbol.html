@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+<!--
+  El usuario ingresará los partidos empatados y ganados y podrá ver la cantidad de puntos.
+
+-->
+<h1>PROGRAMA TABLERO DE FUTBOL</h1>
+
+<h3>La formula para calcularlo es: peso / (altura * altura)</h3>
+
+<script>
+  function saltarLinea() {
+    document.write("<br><br>");    
+  }  
+  
+  function imprimir(frase) {
+    document.write(frase)
+    saltarLinea();
+  }
+
+  var victorias = parseInt(prompt("Informe la cantidad de victorias: "));
+  var empates = parseInt(prompt("Informe la cantidad de empates: "));
+
+  total_puntos = victorias * 3 + empates
+
+  imprimir("El total de puntos del equipo es: " + total_puntos);
+
+  if(total_puntos > 28){
+    imprimir("El equipo está mejor que el año pasado.");
+  }
+  else if(total_puntos < 28){
+    imprimir("El equipo está peor que el año pasado.");
+  }
+  else if(total_puntos == 28){
+    imprimir("El equipo está igual al año pasado.");
+  }
+  
+
+
+</script>

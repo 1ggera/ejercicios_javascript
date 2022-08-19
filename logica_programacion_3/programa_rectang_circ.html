@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+<!--
+  googlear: documentacion 2d canvas
+-->
+<canvas width="600" height="400">
+
+</canvas>
+
+<script>
+  //querySelector comunica JS con etiquetas HTML y guarda eso en una variable
+  var pantalla = document.querySelector("canvas");
+  //getContext trae el contenido de la etiqueta traida con querySelector
+  var pincel =  pantalla.getContext("2d");
+
+  pincel.fillStyle = "orange" // -> propiedad
+  pincel.fillRect(0,0,200,400);//fill=llenar rect= (inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "lightgreen" // -> propiedad
+  pincel.fillRect(200,0,200,400);//fill=llenar rect= (inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "orange" // -> propiedad
+  pincel.fillRect(400,0,400,600);//fill=llenar rect= (inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  //figura triangulo
+  pincel.fillStyle = "gold" // -> propiedad
+  pincel.beginPath();//función para comenzar a dibujar siguiendo instrucciones como en un canva
+  pincel.moveTo(300, 200); //ubico el puntero en el centro del canva
+  pincel.lineTo(200, 400); //1ra linea desde el centro ubicado anteriormente hacia 200px de x a 400px de y
+  pincel.lineTo(400, 400); //2da linea desde el centro ubicado anteriormente hacia 400px de x a 400px de y
+  pincel.fill(); //función para rellenar dentro de la figura dibujada
+
+  //figura circulo
+  pincel.fillStyle = "blue" // -> propiedad
+  pincel.beginPath();//función para comenzar a dibujar 
+  pincel.arc(300, 200, 50, 0,2*3.14); //desde donde comienzo a dibujar (x,y,radio, angulo inicial, angulo final)
+  pincel.fill(); //función para rellenar dentro de la figura dibujada
+
+  document.write("<h1>Hola humano</h1>")
+</script>

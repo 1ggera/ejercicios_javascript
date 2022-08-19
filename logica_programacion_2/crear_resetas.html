@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<!--
+  Juego para anotar los ingredientes de una receta.
+  Tiene validaciones que permiten alertar si se repite el ingrediente.
+-->
+<h1>Recetas de Roman</h1>
+
+<script>
+
+    var ingredientes = [];
+    var cantidad = parseInt(prompt("¿Cuántos ingredientes vas a añadir?"));
+    var contador = 1;
+
+    while( contador <= cantidad) {
+        var ingrediente = prompt("Informe el ingrediente " + contador);
+        var existe = false;//flag para indicar si hay repeticion del ingrediente
+
+        for(var posicion = 0; posicion < ingredientes.length; posicion++){
+          if(ingredientes[posicion] == ingrediente){
+            existe = true;
+            alert("El ingrediente: "+ ingrediente +", ya está en la receta");
+            break;
+          }
+        }
+        if(existe == false){
+          ingredientes.push(ingrediente);
+          contador++;
+        }
+    }
+
+    console.log(ingredientes);
+
+</script>

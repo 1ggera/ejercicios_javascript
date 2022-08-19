@@ -1,0 +1,26 @@
+<!--
+
+  A usar variables para reducir código.
+  Secuencia de la ejecución de nuestro código.
+  Diferentes tipos de datos en las variables y fórmulas.
+  Buenas prácticas de programación: Nomenclatura de variables.
+  
+-->
+
+<meta charset="UTF-8">
+<h3>¿Alcohol o gasolina?</h3>
+<p>Si un carro tiene un tanque de 40 litros.<br> Usando gasolina y consumiendo todo el tanque se hace un camino de 480 kilómetros.<br>¿Cuál es el consumo de gasolina por kilómetro recorrido?</p>
+
+<p>Por otro lado, con el alcohol: el mismo tanque de 40 litros hace un recorrido de 300 kilómetros.<br> ¿Cuál es el consumo de alcohol por kilómetro recorrido?</p>
+<script>
+  var km_gasolina = 480;
+  var km_alcohol = 300;
+  var tanque = 40;
+
+  var gasto_gasolina = (tanque/km_gasolina)
+  var gasto_alcohol = (tanque/km_alcohol)
+
+  document.write("El consumo de gasolina por km recorrido es: "+ gasto_gasolina + "litros")
+  document.write("<br>")
+  document.write("El consumo de alcohol por km recorrido es de: "+ gasto_alcohol + "litros")
+</script>

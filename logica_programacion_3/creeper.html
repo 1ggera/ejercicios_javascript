@@ -1,0 +1,54 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  //querySelector comunica JS con etiquetas HTML y guarda eso en una variable
+  var pantalla = document.querySelector("canvas");
+  //getContext trae el contenido de la etiqueta traida con querySelector
+  var pincel =  pantalla.getContext("2d");
+
+  //1
+  pincel.fillStyle = "darkgreen" // -> propiedad
+  pincel.fillRect(0,0,350,300);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+  //2
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(50,60,90,90);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(210,60,90,90);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(140,120,70,100);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  //boca
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(140,120,70,90);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(100,190,40,110);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  pincel.fillStyle = "black" // -> propiedad
+  pincel.fillRect(210,190,40,110);//(inicio(x)inicio(y),hasta(x)hasta(y)) -> función
+
+  //Solución curso
+  /*
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+      var pantalla = document.querySelector("canvas");
+      var pincel = pantalla.getContext("2d");
+      //cabeza
+      pincel.fillStyle = 'darkgreen';
+      pincel.fillRect(200, 50, 350 ,300);
+      //ojos
+      pincel.fillStyle = 'black';
+      pincel.fillRect(250, 110, 90, 90);
+      pincel.fillRect(410, 110, 90, 90);
+      //nariz
+      pincel.fillRect(340, 200, 70, 100);
+      //boca
+      pincel.fillRect(300, 240, 40, 110);
+      pincel.fillRect(410, 240, 40, 110);
+  
+  */
+  
+</script>

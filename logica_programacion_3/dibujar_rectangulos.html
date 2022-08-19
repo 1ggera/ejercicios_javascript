@@ -1,0 +1,69 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  function dibujarCuadrado(x,y,color){
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    //cuadradito
+    pincel.fillStyle = color;
+    pincel.fillRect(x,y,50,50);
+    //borde
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(x,y,50,50);
+  }
+  
+  //Tambien puedo dibujar con un for
+  for(var x = 0; x < 600; x = x + 50 ){
+    dibujarCuadrado(x,0,"blue");
+    dibujarCuadrado(x,50,"gold"); // baja 50px sobre el eje "y"
+    dibujarCuadrado(x,100,"lightblue");
+  }
+
+  /* Podría usar un while q dibuje los cuadritos
+  var x= 0;
+  while(x < 600){
+    dibujarCuadrado(x,0,"blue");
+    dibujarCuadrado(x,50,"green");
+    dibujarCuadrado(x,100,"blue");
+    var x = x + 50;
+  }
+  */
+
+  //podría hacer un llamado de la función por cada cuadrado
+  // dibujarCuadrado(0, 0, "green");
+  // dibujarCuadrado(50, 0, "green");
+  // dibujarCuadrado(100, 0, "green");
+
+  
+  /*
+  También podria hacer una función para cada color
+
+  function dibujarCuadradoVerde(x,y){
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "green";
+    pincel.fillRect(x,y,50,50);
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(x,y,50,50);
+  }
+  function dibujarCuadradoOrange(x,y){
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "orange";
+    pincel.fillRect(x,y,50,50);
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(x,y,50,50);
+  }
+  function dibujarCuadradoBlue(x,y){
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle = "blue";
+    pincel.fillRect(x,y,50,50);
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(x,y,50,50);
+  }
+  */  
+</script>

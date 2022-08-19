@@ -1,0 +1,113 @@
+<meta charset="UTF-8">
+<!--
+  Programa q elige aleatoriamente 4 numeros a descubrir.
+  Luego te deja intentar descubrir cada uno en una posición.
+  Si aciertas se termian el juego, si no aciertas itera a la siguiente posición.
+-->
+<input />
+<button>Verificar si acertó el número secreto</button>
+
+<script>
+
+  //elije un número a descubrir
+  function aleatorio(){
+    return Math.round(Math.random()*10);
+  };
+
+  function sortearNumeros(cantidad){
+
+    var numSecretos = [];
+    var contador = 1;
+
+    while(contador <= cantidad){
+      var numeroAleatorio = aleatorio();
+      console.log(numeroAleatorio);//-> inspecciona las repeticiones
+      var repeticionEncontrada = false;
+      
+      if(numeroAleatorio != 0){
+        //este for+if chekea que los números elegidos aleatoriamente no se repitan. Si no se repiten los agrega al array
+        for(var posicion = 0; posicion < numSecretos.length; posicion++){
+          if(numeroAleatorio == numSecretos[posicion]){
+            repeticionEncontrada = true;    
+            break;
+          }
+        }
+        if(repeticionEncontrada == false){
+          numSecretos.push(numeroAleatorio);
+          contador++;
+        }
+      }     
+    }
+    return numSecretos;
+  }
+
+  var secretos = sortearNumeros(4);
+  console.log(secretos);//-> inspecciona los numeros elegidos
+  //secretos.push(aleatorio()); -> el método push ingresa el dato en el array
+  
+//  var numSecreto = Math.round(Math.random()*10);
+  var input = document.querySelector("Input");
+  input.focus(); //para indicar q el cursor comience acá
+
+  function verificar(){
+
+    var encontrado = false;
+    //ciclo para q pregunte 4 veces por los valores del array
+    for(var posicion =0; posicion < secretos.length; posicion++ ){
+
+      if(parseInt(input.value)==secretos[posicion]){
+
+        alert("Acertaste! el numero era: " + input.value);
+        encontrado = true;
+        break;
+      }
+    }
+
+    if(encontrado == false){
+      alert("Has fallado");
+    }
+
+    //para q luego de intentar adivinar el número limpie el input
+    input.value = "";
+    //para indicar q el cursor haga foco en esta etiqueta
+    input.focus();
+  }
+
+  //capturo lo q está en mi etiqueta html button
+  var button = document.querySelector("button");
+  //establezco q en el evento onclick llame a verificar
+  button.onclick = verificar;
+
+</script>
+
+<!--
+El caso de que se quiera ingresar un numero y mostrarlo cuando se clikea un boton.
+Debo crear la funcion para mostrar y dentro debo enviar el valor del input
+
+<meta charset="UTF-8">
+<input/>
+<button>Mostrar texto escrito</button>
+
+<script>
+    var input = document.querySelector("input");
+
+    function mostrarTexto() {
+
+        alert(input.value);
+    }
+
+    var button = document.querySelector("button");
+    button.onclick = mostrarTexto;
+</script>
+-->
+
+  
+<!--
+  El document tiene también otras funcionalidades. Es a través de document.querySelector que podemos ir hasta el mundo HTML y llevar el elemento al mundo JavaScript para que podamos manipularlo.
+
+  Pero ten cuidado, el correcto es querySelector con una S mayúscula. Si escribes con una s minúscula, cometerás un error de sintaxis.
+
+  Continuando... document.querySelector recibe un parámetro del nombre de las etiquetas que queremos buscar del mundo HTML. 
+  
+  Es más poderoso de lo que piensas y acepta recibir otros tipos de parámetros, pero para nuestra capacitación, entender que si pasamos el nombre de una etiqueta HTML nos devolverá la etiqueta en el mundo JavaScript es suficiente. 
+-->
