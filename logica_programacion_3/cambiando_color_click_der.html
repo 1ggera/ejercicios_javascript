@@ -1,0 +1,38 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+    var colores = ["blue", "red", "green"];
+    var indiceColorActual = 0;
+
+    function dibujarCirculo(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;    
+        pincel.fillStyle = colores[indiceColorActual];//toma el color según el contador de cliks derechos.
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log(x + "," + y);        
+    }
+
+    function cambiarColor(){
+        indiceColorActual++;
+
+        //copmprueba q si el contador de click derechos supera los 3 elementos de colores, entonces vuelva al valor de la posición 0
+        if(indiceColorActual >= colores.length){
+            indiceColorActual = 0;
+        }
+
+        alert("Color de la posición: " + indiceColorActual);
+        return false; //anula las opciones del menú contextual que saltan con el click derecho
+    }
+
+    pantalla.onclick = dibujarCirculo;
+    //Una vez creada la función la asocio al evento onclick de la variable pantalla
+    pantalla.oncontextmenu = cambiarColor;
+
+    
+</script> 
