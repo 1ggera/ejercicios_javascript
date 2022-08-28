@@ -1,0 +1,76 @@
+<canvas width="600" height="400"> </canvas>
+<!--
+  Dibujo un circulo de lado a lado borrando la pantalla despues de cada dibujo.
+  La función de dibujo va a esperar cierto tiempo para volver a dibujar y en otra ubicación
+-->
+<script>
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");    
+  pincel.fillStyle = "lightgrey";
+  pincel.fillRect(0,0,600,400); 
+
+  var radio = 10;
+  var xAleatorio; //creo estas variables para tener scope global
+  var yAleatorio;
+
+  //recibe coordenadas x,y,radio
+  function dibujarCirc(x,y,radio, color){
+    pincel.fillStyle = color;
+    pincel.beginPath();
+    pincel.arc(x, y, radio, 0, 2*Math.PI);//recibe coordenadas del centro de la circunferencia,radio, angulo inicial, angulo final en radiales
+    pincel.fill();
+  }
+
+  function limpiarPantalla(){
+    pincel.clearRect(0,0,600,400);    
+  }
+
+  var x = 0;
+  
+  //dibujar el objetivo a adivinar
+  function dibujarObjetivo(x, y){
+    dibujarCirc(x, y, radio +20 , "red");
+    dibujarCirc(x, y, radio +10, "white");
+    dibujarCirc(x, y, radio, "red" );
+  }
+
+  //sortea la posición random de x y para dibujar el objetivo
+  //Math.floor redondea hacia abajo
+  function sortearPosición(maximo){
+    return Math.floor(Math.random()*maximo)
+  }
+
+  //Una vez creada las funciones que dibujan y q sortean la posición armo la funcion que limpia la pantalla, elije posiciones y dibuja
+  //crea la circunferencia en nuevas coordenadas y limpia la pantalla
+  function actualizarPantalla(){
+    limpiarPantalla();
+    xAleatorio = sortearPosición(600);
+    yAleatorio = sortearPosición(400);
+    dibujarObjetivo(xAleatorio, yAleatorio);
+    
+  }
+
+  setInterval(actualizarPantalla, 800);
+
+  /* Ahora busco que cada vez que hago click en el circulo menor interno tiene que enviar una alerta que diga que dí en el blanco.
+  */
+
+  //creo la funcion que envia la alerta evaluando un 'if'
+  //capturo el evento de click dentro del canvas 'pantalla' y lo asocio a la funcion q envia la alerta
+  function disparar(evento){
+    var x = evento.pageX - pantalla.offsetLeft; //detecto el eje x menos la parte izq de mi pantalla
+    var y = evento.pageY - pantalla.offsetTop;  //detecto el eje x menos la parte izq de mi pantalla
+
+    if((x < xAleatorio + radio) && //le digo q si es menor al perímetro derecho
+      (x > xAleatorio - radio) && //si es menor al perimetro izquierdo
+      (y < yAleatorio + radio) && //si es menor al perimetro superior
+      (y > yAleatorio - radio)) //si es menor al perimetro inferior
+      {
+        alert("Diste en el blanco");         
+      }
+  }
+  pantalla.onclick = disparar;
+  
+
+</script>
+

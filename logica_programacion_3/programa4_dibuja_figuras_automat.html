@@ -1,0 +1,62 @@
+<canvas width="600" height="400"> </canvas>
+<!--
+  Dibujo un circulo de lado a lado borrando la pantalla despues de cada dibujo.
+  La función de dibujo va a esperar cierto tiempo para volver a dibujar y en otra ubicación
+-->
+<script>
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");    
+  pincel.fillStyle = "lightgrey";
+  pincel.fillRect(0,0,600,400); 
+
+  //recibe coordenadas x,y,radio
+  function dibujarCirc(x,y,radio){
+    pincel.fillStyle = "blue";
+    pincel.beginPath();
+    pincel.arc(x, y, radio, 0, 2*Math.PI);//recibe coordenadas del centro de la circunferencia,radio, angulo inicial, angulo final en radiales
+    pincel.fill();
+  }
+
+  function limpiarPantalla(){
+    pincel.clearRect(0,0,600,400);    
+  }
+
+  var x = 0;
+  var sentido = 1;
+
+  //crea la circunferencia en nuevas coordenadas y limpia la pantalla
+  function actualizarPantalla(){
+    limpiarPantalla();
+    if(x > 600){
+      sentido = -1;
+    }else if(x < 0){
+      sentido = 1;
+    }
+      dibujarCirc(x, 20, 10);
+      x = x + sentido;
+  }
+
+  setInterval(actualizarPantalla, 100);
+
+  //para q dibuje cada cierto tiempo uso setInterval. Pasar el tiempo el milisegundos
+  //setInterval(dibujarCirc(20,20,10),1000);
+
+  /* Para ver como funciona setInterval
+    function exibirMensaje(){
+      console.log("Mostrar mensaje");
+    }
+
+    setInterval(exibirMensaje, 1000)
+  */
+
+  //para que se dibujen circulos de lado a lado
+  // for(var x = 20; x < 600; x= x + 30){
+  //   dibujarCirc(x,30,10);  
+  // }
+
+  //le paso cordenadas x, y, radio
+  // dibujarCirc(20,20,10);
+  // dibujarCirc(30,30,15);
+
+</script>
+

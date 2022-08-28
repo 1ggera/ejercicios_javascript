@@ -1,0 +1,108 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "grey";
+  pincel.fillRect(0, 0, 600, 400);
+
+  //se le pasan los parámetros para q dibuje cuadrados
+  function dibujarCuadrado(x, y, color) {
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+    //red
+    pincel.fillStyle = color;
+    pincel.fillRect(x, y, 50, 50);
+    //borde
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(x, y, 50, 50);
+  }
+
+  //dibujo 3 cuadrados para tener mi paleta de colores
+  function paletaColores(){
+    dibujarCuadrado(0, 0, "red");
+    dibujarCuadrado(50, 0, "green");
+    dibujarCuadrado(100, 0, "blue");
+  }
+
+  var puedoDibujar = false;
+  var indiceColorActual = "blue";
+
+  //la dibujadora de circulos, recibe coordenadas y el estado de la variable colorActual
+  function dibujarCirculo(x, y, indiceColorActual) {
+    if (puedoDibujar) {
+      pincel.fillStyle = indiceColorActual;
+      pincel.beginPath();
+      pincel.arc(x, y, 5, 0, 2 * 3.14);
+      pincel.fill();
+    }
+  }
+
+  //para usar de habilitadoras para dobujar
+  function habilitarDibujar(xCoordenada, yCoordenada) {
+    puedoDibujar = true;
+  }
+  function deshabilitarDibujar(x, y) {
+    puedoDibujar = false;
+  }
+
+  //para impedir dibujar cobre la paleta de colores
+  function puedeDisenharArea(xCoordenada, yCoordenada) {
+    if (
+      xCoordenada >= 0 &&
+      xCoordenada < 155 &&
+      yCoordenada >= 0 &&
+      yCoordenada < 55
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  //para tomar coordenadas
+  function capturarMovimientoDelMouse(evento) {
+    var x = evento.pageX - pantalla.offsetLeft;
+    var y = evento.pageY - pantalla.offsetTop;
+
+    //paso los parámetros a la funcion que me habilita dibujar
+    if (puedeDisenharArea(x, y)) {
+      //paso los parámetros a la función q dibuja los círculos
+      dibujarCirculo(x, y, indiceColorActual);
+    }
+  }
+
+  //para cambiar de colores en caso de clickear en algún cuadro de la paleta
+  function cambiarColor(evento) {
+    var x = evento.pageX - pantalla.offsetLeft;
+    var y = evento.pageY - pantalla.offsetTop;
+
+    if (y > 0 && y < 55) {
+      if (x > 0 && x < 50) {
+        indiceColorActual = "red";
+        console.log(indiceColorActual);
+      } else if (x > 50 && x < 100) {
+        indiceColorActual = "green";
+        console.log(indiceColorActual);
+      } else if (x > 100 && x < 150) {
+        indiceColorActual = "blue";
+        console.log(indiceColorActual);
+      }
+    }
+  }
+  
+  //llamado escalonado de funciones que funcionan cuando se activa el evento, dentro del canvas que se llama pantalla
+  pantalla.onmousemove = capturarMovimientoDelMouse;
+  pantalla.onmousedown = habilitarDibujar;
+  pantalla.onmouseup = deshabilitarDibujar;
+  paletaColores();
+  pantalla.onclick = cambiarColor;
+
+  // ¡Ready!
+
+  /*
+    revisar que en todos los llamados de las funciones se estén enviando todos los parámetros.
+    Tambien en las funciones que contienen llamados a otras funciones.
+  */
+</script>
