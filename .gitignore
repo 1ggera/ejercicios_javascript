@@ -41,7 +41,10 @@ build/Release
 node_modules/
 jspm_packages/
 certificados/
-apuntes_log_prog.js
+challenge1_encriptadordeTexto/
+notes_log_prog.js
+css/
+git/
 
 
 # TypeScript v1 declaration files
